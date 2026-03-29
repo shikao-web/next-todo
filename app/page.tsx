@@ -1,9 +1,14 @@
 import Image from "next/image";
+import AddForm from "@/components/ui/add_form";
+import ShowTasks from "@/components/ui/show_task";
 
 export default function Home() {
   return (
     <>
-      <p className="text-gray-950">Hello, World!</p>
+      <AddForm />
+      <div>
+        <ShowTasks task_content="ゲームする"/>
+      </div>
     </>
   );
 }
