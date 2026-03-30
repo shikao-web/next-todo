@@ -7,7 +7,7 @@ import Link from 'next/link';
 const AddForm: React.FC = () => {
     return (
         <form action="/api/v1/post" method="POST" className="flex">
-            <input className="form-control" type="text" name="task" />
+            <input className="form-control" type="text" name="task" required />
             <button className="btn btn-primary" type="submit">ADD</button>
         </form>
     );
