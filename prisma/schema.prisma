@@ -13,6 +13,6 @@ generator client {
 
 model Todo {
   id        Int      @id @default(autoincrement())
-  task      String?
+  task      String
   createdAt DateTime @default(now())
 }
