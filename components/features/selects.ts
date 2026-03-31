@@ -1,20 +1,9 @@
-import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-export async function read_todo_from_DB(): Promise<string[]> {
+export type TodoRow = { id: number; task: string };
 
-  const tasks: string[] = (await prisma.todo.findMany({
-    where: {
-      task: {
-        not: null,
-      },
-    },
-    select: { task: true },
-  })).map(t => t.task).filter((t): t is string => t !== null);
-
-  
-
-  return tasks;
-
-
+export async function read_todo_from_DB(): Promise<TodoRow[]> {
+  return (await prisma.todo.findMany({
+    select: { task: true, id: true },
+  })).map((t) => ({ id: t.id, task: t.task }));
 }

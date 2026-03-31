@@ -13,5 +13,6 @@ export async function POST(req: Request, res: Response) {
     // 受信したデータをDBに保存
     save_todo_to_DB(task);
     // '/'にリダイレクト
+    await new Promise((resolve) => setTimeout(resolve, 500));
     return Response.redirect(new URL('/', req.url));
 }
