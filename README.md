@@ -30,7 +30,7 @@ cp .env.example .env
 ```
 ### 3. Docker Composeを起動
 ```bash
-docker compose up -d
+docker compose up -d --build
 ```
 
 ### 4. ブラウザで以下にアクセスしてください。
