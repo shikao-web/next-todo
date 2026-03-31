@@ -12,9 +12,8 @@ export async function POST(req: Request) {
     console.log(task);
     // 受信したデータをDBに保存
     await save_todo_to_DB(task);
-    // '/'にリダイレクト
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    return NextResponse.redirect(new URL('/', req.url));
+    // リダイレクトではなく JSON を返す（クライアント側で遷移制御するため）
+    return NextResponse.json({ ok: true });
 }
 
 export async function DELETE(req: Request) {
