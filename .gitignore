@@ -42,4 +42,9 @@ next-env.d.ts
 
 /app/generated/prisma
 
-/app/generated/prisma
+# nginx / basic auth でホスト側に htpasswd を置く場合用（未使用でも保険）
+/.htpasswd
+/nginx/.htpasswd
+
+# docker-compose のローカル上書き（存在する場合）
+docker-compose.override.yml

@@ -1,18 +1,31 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { save_todo_to_DB } from '@/components/features/actions';
+import { NextResponse } from "next/server";
+import { delete_todo_from_DB, save_todo_to_DB } from '@/components/features/actions';
 
-export async function GET(req: Request, res: Response) {
-    return Response.redirect(new URL('/', req.url));
+export async function GET(req: Request) {
+    return NextResponse.redirect(new URL('/', req.url));
 }
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
     // フォームデータ受信
     const formData = await req.formData();
     const task: string = formData.get("task") as string;
     console.log(task);
     // 受信したデータをDBに保存
-    save_todo_to_DB(task);
+    await save_todo_to_DB(task);
     // '/'にリダイレクト
     await new Promise((resolve) => setTimeout(resolve, 500));
-    return Response.redirect(new URL('/', req.url));
+    return NextResponse.redirect(new URL('/', req.url));
+}
+
+export async function DELETE(req: Request) {
+    const url = new URL(req.url);
+    const idParam = url.searchParams.get("id");
+    const id = idParam ? Number(idParam) : NaN;
+
+    if (!idParam || Number.isNaN(id)) {
+        return NextResponse.json({ error: "id is required" }, { status: 400 });
+    }
+
+    await delete_todo_from_DB(id);
+    return NextResponse.json({ ok: true });
 }

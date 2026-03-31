@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
 export async function save_todo_to_DB(task: string) { 
@@ -8,4 +7,10 @@ export async function save_todo_to_DB(task: string) {
     data: { task },
   })
   
+}
+
+export async function delete_todo_from_DB(id: number) {
+  return prisma.todo.delete({
+    where: { id },
+  });
 }

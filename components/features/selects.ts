@@ -3,7 +3,10 @@ import prisma from "@/lib/prisma";
 export type TodoRow = { id: number; task: string };
 
 export async function read_todo_from_DB(): Promise<TodoRow[]> {
-  return (await prisma.todo.findMany({
+  const rows = await prisma.todo.findMany({
     select: { task: true, id: true },
-  })).map((t) => ({ id: t.id, task: t.task }));
+  });
+
+  // prisma の型推論が環境によってうまく効かないことがあるため、明示的に型合わせしています
+  return rows as unknown as TodoRow[];
 }
