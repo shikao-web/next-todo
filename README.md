@@ -10,7 +10,6 @@
 - Next.js ( https://nextjs.org/ )
 - prisma ( https://www.prisma.io/ )
 - Neon ( https://neon.com/ )
-- Docker ( https://www.docker.com/ )
 - Cursor ( https://cursor.com/ )
 - Vercel ( https://vercel.com/ )
 
@@ -28,10 +27,14 @@ cd next-todo
 ```bash
 cp .env.example .env
 ```
-### 3. Docker Composeを起動
+### 3. WSL で開発サーバーを起動
 ```bash
-docker compose up -d --build
+# WSL ターミナルで実行
+npm install
+npm run dev
 ```
 
 ### 4. ブラウザで以下にアクセスしてください。
-http://localhost:8080 
+http://localhost:3000
+
+Basic 認証は Next.js の `proxy` で行います。`.env` の `BASIC_AUTH_USER` / `BASIC_AUTH_PASS` を設定すると有効になり、空のままなら認証は掛かりません。
