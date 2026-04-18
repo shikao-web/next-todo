@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Header, Footer, Sidebar } from '@/components/layout'
+import { Header, Footer } from '@/components/layout'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +32,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Header />
         <div className="container">
-          <Sidebar />
           <main>
             {children}
           </main>
