@@ -14,27 +14,10 @@
 - Vercel ( https://vercel.com/ )
 
 ## 使い方
-### 1. リポジトリをクローン
 
-```bash
-git clone https://github.com/shikao-web/next-todo.git
-cd next-todo
-```
+### 1. ブラウザで以下にアクセスしてください。
+https://next-todo-jade-five.vercel.app/
 
-### 2. 環境変数の設定
-.env.example をコピーして .env を作成し、設定を変更してください。
+### 2. Basic認証画面で、指定のユーザー名とパスワードを入力してください。
 
-```bash
-cp .env.example .env
-```
-### 3. WSL で開発サーバーを起動
-```bash
-# WSL ターミナルで実行
-npm install
-npm run dev
-```
-
-### 4. ブラウザで以下にアクセスしてください。
-http://localhost:3000
-
-Basic 認証は Next.js の `proxy` で行います。`.env` の `BASIC_AUTH_USER` / `BASIC_AUTH_PASS` を設定すると有効になり、空のままなら認証は掛かりません。
+認証に成功すれば、タスクを追加、チェックボックスにチェックを入れて削除できます。
