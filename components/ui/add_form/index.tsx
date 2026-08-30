@@ -22,6 +22,7 @@ const AddForm: React.FC = () => {
 
         // 要件どおり少し待ってからリロード
         await new Promise((resolve) => setTimeout(resolve, 500));
+        setTask("");
         router.refresh();
     };
 
