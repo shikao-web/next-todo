@@ -9,7 +9,7 @@
 - React ( https://react.dev/ )
 - Next.js ( https://nextjs.org/ )
 - prisma ( https://www.prisma.io/ )
-- Neon ( https://neon.com/ )
+- Supabase ( https://supabase.com/ )
 - Cursor ( https://cursor.com/ )
 - Vercel ( https://vercel.com/ )
 
@@ -18,6 +18,4 @@
 ### 1. ブラウザで以下にアクセスしてください。
 https://next-todo-jade-five.vercel.app/
 
-### 2. Basic認証画面で、指定のユーザー名とパスワードを入力してください。
-
-認証に成功すれば、タスクを追加、チェックボックスにチェックを入れて削除できます。
+アクセス後、タスクの追加や、チェックボックスにチェックを入れて削除ができます。
