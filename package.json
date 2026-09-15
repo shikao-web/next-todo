@@ -11,6 +11,8 @@
   "dependencies": {
     "@prisma/adapter-pg": "^6.19.3",
     "@prisma/client": "^6.19.3",
+    "@supabase/ssr": "^0.12.5",
+    "@supabase/supabase-js": "^2.109.0",
     "bootstrap": "^5.3.8",
     "next": "^16.2.4",
     "pg": "^8.20.0",

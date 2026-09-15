@@ -15,4 +15,21 @@
 .logo {
   font-weight: bold;
   font-size: 1.5rem;
+  margin: 0;
+}
+
+.logo a {
+  color: white;
+  text-decoration: none;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userEmail {
+  font-size: 0.9rem;
+  color: #ccc;
 }
