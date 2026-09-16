@@ -1,10 +1,12 @@
 'use client'
 
 import { useState, type ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 
 type Props = {task_content: string, task_id: number}
 
 const ShowTasks = ({ task_content, task_id }: Props) => {
+    const router = useRouter();
     const [isChecked, setIsChecked] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
 
@@ -16,12 +18,17 @@ const ShowTasks = ({ task_content, task_id }: Props) => {
 
         setIsDeleting(true);
         try {
-            // h2 に表示している task_id（todo.id）を削除する
-            await fetch(`/api/v1/post?id=${task_id}`, { method: "DELETE" });
+            const response = await fetch(`/api/v1/post?id=${task_id}`, { method: "DELETE" });
+
+            if (response.ok) {
+                router.refresh();
+            } else {
+                setIsChecked(false);
+            }
+        } catch {
+            setIsChecked(false);
         } finally {
-            // 200ms待機して '/' をリロード
-            await new Promise((resolve) => setTimeout(resolve, 200));
-            window.location.href = "/";
+            setIsDeleting(false);
         }
     };
 

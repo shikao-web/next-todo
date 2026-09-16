@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import styles from './addform.module.css';
 
 const AddForm: React.FC = () => {
     const router = useRouter();
@@ -15,13 +14,13 @@ const AddForm: React.FC = () => {
         formData.set("task", task);
 
         // 直接遷移せず、API へ POST する
-        await fetch("/api/v1/post", {
+        const response = await fetch("/api/v1/post", {
             method: "POST",
             body: formData,
         });
 
-        // 要件どおり少し待ってからリロード
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        if (!response.ok) return;
+
         setTask("");
         router.refresh();
     };

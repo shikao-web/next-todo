@@ -18,5 +18,6 @@ model Todo {
   task      String
   userId    String
   createdAt DateTime @default(now())
-}
 
+  @@index([userId, createdAt, id])
+}
