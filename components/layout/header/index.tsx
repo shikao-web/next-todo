@@ -12,6 +12,7 @@ const Header: React.FC = () => {
   const supabase = createClient();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -41,6 +42,34 @@ const Header: React.FC = () => {
     router.refresh();
   };
 
+  const deleteUser = async () => {
+    const isConfirmed = window.confirm(
+      "本当にアカウントを削除しますか？登録したToDoもすべて削除され、この操作は取り消せません。"
+    );
+
+    if (!isConfirmed) {
+      return;
+    }
+
+    setIsDeleting(true);
+
+    try {
+      const response = await fetch("/api/v1/account", { method: "DELETE" });
+
+      if (!response.ok) {
+        throw new Error("アカウントの削除に失敗しました。");
+      }
+
+      await supabase.auth.signOut();
+      router.push("/login");
+      router.refresh();
+    } catch {
+      window.alert("アカウントの削除に失敗しました。時間をおいて再度お試しください。");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <header className={styles.header}>
       <h1 className={styles.logo}>
@@ -59,6 +88,14 @@ const Header: React.FC = () => {
                   onClick={handleLogout}
                 >
                   ログアウト
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-light btn-sm"
+                  onClick={deleteUser}
+                  disabled={isDeleting}
+                >
+                  {isDeleting ? "削除中..." : "アカウント削除"}
                 </button>
               </>
             ) : (
